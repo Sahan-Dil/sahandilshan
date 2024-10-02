@@ -12,8 +12,17 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
-const ThemeSwitch = () => {
+interface ThemeSwitchProps {
+  onThemeChange: (theme: 'light' | 'dark') => void;
+}
+
+const ThemeSwitch: React.FC<ThemeSwitchProps> = ({ onThemeChange }) => {
   const { setTheme } = useTheme();
+
+  const handleSetTheme = (theme: 'light' | 'dark') => {
+    setTheme(theme);
+    onThemeChange(theme); // Notify the parent component (Home) about the theme change
+  };
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
@@ -30,10 +39,10 @@ const ThemeSwitch = () => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem onClick={() => setTheme('light')}>
+          <DropdownMenuItem onClick={() => handleSetTheme('light')}>
             Light
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setTheme('dark')}>
+          <DropdownMenuItem onClick={() => handleSetTheme('dark')}>
             Dark
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -41,4 +50,5 @@ const ThemeSwitch = () => {
     </div>
   );
 };
+
 export default ThemeSwitch;

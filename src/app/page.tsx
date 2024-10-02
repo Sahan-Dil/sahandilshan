@@ -1,12 +1,13 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import About from './about/page';
 import Navbar from '@/components/home/navbar';
 import ThemeSwitch from '@/components/home/themeSwitch';
 
 const Home = () => {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const router = useRouter();
 
   useEffect(() => {
@@ -27,14 +28,18 @@ const Home = () => {
     }
   };
 
+  const handleThemeChange = (newTheme: 'light' | 'dark') => {
+    setTheme(newTheme);
+  };
+
   return (
-    <div>
-      <ThemeSwitch />
+    <div className={`${theme === 'dark' ? 'dark' : 'light'}`}>
+      <ThemeSwitch onThemeChange={handleThemeChange} />
 
       <Navbar navigateToSection={navigateToSection} />
 
       <div className="mt-20">
-        <About />
+        <About theme={theme} />
         {/* Add more sections like Projects, Contact below */}
       </div>
     </div>
