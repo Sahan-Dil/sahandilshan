@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import Typewriter from 'typewriter-effect';
 import * as THREE from 'three';
@@ -5,9 +6,13 @@ import FOG from 'vanta/dist/vanta.fog.min';
 import Image from 'next/image';
 import img from '../../components/ui/OIP.jpg';
 
-const About = ({ theme }: { theme: 'dark' | 'light' }) => {
+interface AboutProps {
+  theme: 'dark' | 'light';
+}
+
+const About: React.FC<AboutProps | any> = ({ theme }) => {
   const [vantaEffect, setVantaEffect] = useState<any>(null);
-  const vantaRef = useRef(null);
+  const vantaRef = useRef<HTMLDivElement | null>(null); // Set the ref type here
 
   useEffect(() => {
     if (vantaEffect) vantaEffect.destroy();
@@ -34,7 +39,7 @@ const About = ({ theme }: { theme: 'dark' | 'light' }) => {
     return () => {
       if (vantaEffect) vantaEffect.destroy();
     };
-  }, [theme]);
+  }, [theme, vantaEffect]);
 
   return (
     <section
