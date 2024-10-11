@@ -21,7 +21,7 @@ const ThemeSwitch: React.FC<ThemeSwitchProps> = ({ onThemeChange }) => {
 
   const handleSetTheme = (theme: 'light' | 'dark') => {
     setTheme(theme);
-    onThemeChange(theme); // Notify the parent component (Home) about the theme change
+    onThemeChange(theme);
   };
 
   return (

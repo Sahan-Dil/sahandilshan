@@ -58,20 +58,20 @@ const About = ({ theme }: { theme: 'dark' | 'light' }) => {
           {/* Text section */}
           <div className="w-full md:w-1/2 text-center md:text-left order-2 md:order-1">
             <h2 className="text-3xl sm:text-4xl md:text-5xl tracking-[3px] pb-4 font-bold">
-              ✋Hey there... It&apos;s Sahan Dilshan
+              Hey there... It&apos;s Sahan Dilshan
             </h2>
-            <div className="text-2xl sm:text-3xl md:text-4xl text-violet-500 pb-8 md:pb-16 font-bold">
-              <Typewriter
-                options={{
-                  strings: [
-                    'I am a Full-Stack Engineer🌐',
-                    'I love creating beautiful web experiences🌐',
-                  ],
-                  delay: 150,
-                  autoStart: true,
-                  loop: true,
-                }}
-              />
+            <div className="text-2xl sm:text-3xl md:text-4xl text-black font-bold flex items-center">
+              I&apos;m a
+              <span className="text-violet-500 ml-2 overflow-hidden flex-shrink-0">
+                <Typewriter
+                  options={{
+                    strings: ['Full-Stack Engineer', 'Mobile App Developer'],
+                    delay: 150,
+                    autoStart: true,
+                    loop: true,
+                  }}
+                />
+              </span>
             </div>
           </div>
         </div>
