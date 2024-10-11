@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 interface NavBarProps {
   navigateToSection: (section: string) => void;
@@ -8,7 +8,13 @@ interface NavBarProps {
 }
 
 const NavBar: React.FC<NavBarProps> = ({ navigateToSection, theme }) => {
+  const [selectedSection, setSelectedSection] = useState<string>('about');
   const isDarkTheme = theme === 'dark';
+
+  const handleNavigation = (section: string) => {
+    setSelectedSection(section);
+    navigateToSection(section);
+  };
 
   return (
     <div className="fixed top-5 left-0 right-0 z-50 mx-auto max-w-5xl px-6 lg:px-8">
@@ -19,37 +25,23 @@ const NavBar: React.FC<NavBarProps> = ({ navigateToSection, theme }) => {
       >
         {/* Navbar */}
         <div className="flex space-x-8 w-full justify-around">
-          <span
-            onClick={() => navigateToSection('about')}
-            className={`cursor-pointer text-lg transition-transform duration-300 ${
-              isDarkTheme
-                ? 'text-gray-100 hover:text-gray-200'
-                : 'text-gray-800 hover:text-blue-600'
-            } hover:scale-105`}
-          >
-            About
-          </span>
-          <span
-            onClick={() => navigateToSection('projects')}
-            className={`cursor-pointer text-lg transition-transform duration-300 ${
-              isDarkTheme
-                ? 'text-gray-200 hover:text-gray-400'
-                : 'text-gray-800 hover:text-blue-600'
-            } hover:scale-105`}
-          >
-            Projects
-          </span>
-          <span
-            onClick={() => navigateToSection('contact')}
-            className={`cursor-pointer text-lg transition-transform duration-300 ${
-              isDarkTheme
-                ? 'text-gray-200 hover:text-gray-400'
-                : 'text-gray-800 hover:text-blue-600'
-            } hover:scale-105`}
-          >
-            Contact
-          </span>
-          {/* Add more items if needed */}
+          {['about', 'projects', 'contact'].map((section) => (
+            <span
+              key={section}
+              onClick={() => handleNavigation(section)}
+              className={`cursor-pointer text-lg transition-transform duration-300  ${
+                selectedSection === section
+                  ? isDarkTheme
+                    ? 'text-blue-400'
+                    : 'text-blue-600'
+                  : isDarkTheme
+                    ? 'text-white hover:text-gray-200'
+                    : 'text-gray-800 hover:text-blue-600'
+              } hover:scale-105`}
+            >
+              {section.charAt(0).toUpperCase() + section.slice(1)}
+            </span>
+          ))}
         </div>
       </div>
     </div>
