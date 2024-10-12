@@ -32,11 +32,11 @@ const NavBar: React.FC<NavBarProps> = ({ navigateToSection, theme }) => {
               className={`cursor-pointer text-lg transition-transform duration-300  ${
                 selectedSection === section
                   ? isDarkTheme
-                    ? 'text-blue-400'
-                    : 'text-blue-600'
+                    ? 'text-[#c77dff]'
+                    : 'text-[#5a189a]'
                   : isDarkTheme
-                    ? 'text-white hover:text-gray-200'
-                    : 'text-gray-800 hover:text-blue-600'
+                    ? 'text-white hover:text-[#e0aaff]'
+                    : 'text-gray-800 hover:text-[#7b2cbf]'
               } hover:scale-105`}
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}

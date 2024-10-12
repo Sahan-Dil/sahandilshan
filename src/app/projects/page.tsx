@@ -9,6 +9,10 @@ interface Project {
   link: string;
 }
 
+interface ProjectsProps {
+  theme: 'dark' | 'light';
+}
+
 const projects: Project[] = [
   {
     title: 'Project 1',
@@ -33,9 +37,12 @@ const projects: Project[] = [
   },
 ];
 
-const Projects = () => {
+const Projects: React.FC<ProjectsProps | any> = ({ theme }) => {
   return (
-    <section id="projects" className={'min-h-screen py-20'}>
+    <section
+      id="projects"
+      className={`min-h-screen py-20 ${theme === 'dark' ? ' text-white' : ' text-black'}`}
+    >
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <h2 className="text-4xl font-bold mb-12 text-center mt-14">
           My Projects
@@ -44,7 +51,7 @@ const Projects = () => {
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-white shadow-md rounded-lg overflow-hidden"
+              className={`shadow-md rounded-lg overflow-hidden ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}
             >
               <Image
                 src={project.imageUrl}
@@ -60,7 +67,7 @@ const Projects = () => {
                   {project.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-2 py-1 text-xs rounded-full bg-gray-200"
+                      className="px-2 py-1 text-xs rounded-full bg-gray-200 text-black"
                     >
                       {tech}
                     </span>
@@ -70,7 +77,7 @@ const Projects = () => {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-4 py-2 bg-blue-500 text-white rounded transition duration-300"
+                  className="inline-block px-4 py-2 bg-[#5a189a] text-white rounded transition duration-300"
                 >
                   View Project
                 </a>

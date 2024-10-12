@@ -39,7 +39,7 @@ const About: React.FC<AboutProps | any> = ({ theme }) => {
     return () => {
       if (vantaEffect) vantaEffect.destroy();
     };
-  }, [theme, vantaEffect]);
+  }, [theme]);
 
   return (
     <section
@@ -65,9 +65,9 @@ const About: React.FC<AboutProps | any> = ({ theme }) => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl tracking-[3px] pb-4 font-bold">
               Hey there... It&apos;s Sahan Dilshan
             </h2>
-            <div className="text-2xl sm:text-3xl md:text-4xl text-black font-bold flex items-center">
-              I&apos;m a
-              <span className="text-violet-500 ml-2 overflow-hidden flex-shrink-0">
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold flex items-center">
+              <span className="whitespace-nowrap">I&apos;m a&nbsp;</span>
+              <span className="text-violet-500 ml-2 overflow-hidden flex-shrink-0 whitespace-nowrap">
                 <Typewriter
                   options={{
                     strings: ['Full-Stack Engineer', 'Mobile App Developer'],
