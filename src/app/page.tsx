@@ -8,6 +8,7 @@ import ThemeSwitch from '@/components/home/themeSwitch';
 import Projects from './projects/page';
 import { useTheme } from 'next-themes';
 import ContactPage from './contact/pages';
+import SkillsPage from './skills/page';
 
 const Home = () => {
   const { setTheme } = useTheme();
@@ -49,7 +50,7 @@ const Home = () => {
 
   return (
     <div
-      className={`min-h-screen bg-gradient-to-br ${currentTheme === 'dark' ? 'from-[#10002b] to-[#5a189a] via-[#261635] to-[#29064a]' : 'from-[#eeecf6] to-[#e0aaff] via-[#d8cbfc] to-[#eeecf6]'}`}
+      className={`min-h-screen bg-gradient-to-br ${currentTheme === 'dark' ? 'from-[#1d1d2b] to-[#5a189a] via-[#261635] to-[#09080a]' : 'from-[#eeecf6] to-[#e0aaff] via-[#d8cbfc] to-[#eeecf6]'}`}
     >
       <ThemeSwitch onThemeChange={handleThemeChange} />
       <Navbar navigateToSection={navigateToSection} theme={currentTheme} />
@@ -73,10 +74,15 @@ const Home = () => {
       </div>
 
       <div className="relative z-20">
+        <SkillsPage theme={currentTheme} />
+      </div>
+
+      <div className="relative z-20">
         <Projects theme={currentTheme} />
       </div>
+
       <div className="relative z-20">
-        <ContactPage />
+        <ContactPage theme={currentTheme} />
       </div>
     </div>
   );
