@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { Code, Server, Smartphone, Cog } from 'lucide-react';
 
@@ -141,7 +142,7 @@ const skillsData = {
   ],
 };
 
-const SkillsPage: React.FC<SkillsPageProps> = ({ theme }) => {
+const SkillsPage: React.FC<SkillsPageProps | any> = ({ theme }) => {
   const textColor = theme === 'dark' ? 'text-white' : 'text-black';
   const cardBgColor = theme === 'dark' ? 'bg-[#16213e]' : 'bg-white';
   const cardBorderColor =
