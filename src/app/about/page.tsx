@@ -39,7 +39,11 @@ const About: React.FC<AboutProps | any> = ({ theme }) => {
     return () => {
       if (vantaEffect) vantaEffect.destroy();
     };
-  }, [theme, vantaEffect]);
+  }, [theme]);
+
+  const description =
+    // eslint-disable-next-line quotes
+    "I am an optimistic and creative full-stack engineer with 2+ years of experience in most javaScript-related technologies in backend development. Also, I have experience in React and Angular with front-end development. I'm highly skilled at understanding key requirements and providing unique and creative solutions to meet customer requirements best. I'm continuously learning all the things I would like to do in the future.";
 
   return (
     <section
@@ -49,7 +53,6 @@ const About: React.FC<AboutProps | any> = ({ theme }) => {
     >
       <div className="max-w-5xl w-full mx-auto px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-12 md:gap-16">
-          {/* Image section (shown first on mobile) */}
           <div className="w-48 h-48 sm:w-60 sm:h-60 md:w-80 md:h-80 relative order-1 md:order-2">
             <Image
               src={img}
@@ -65,9 +68,9 @@ const About: React.FC<AboutProps | any> = ({ theme }) => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl tracking-[3px] pb-4 font-bold">
               Hey there... It&apos;s Sahan Dilshan
             </h2>
-            <div className="text-2xl sm:text-3xl md:text-4xl text-black font-bold flex items-center">
-              I&apos;m a
-              <span className="text-violet-500 ml-2 overflow-hidden flex-shrink-0">
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold flex items-center mb-5">
+              <span className="whitespace-nowrap">I&apos;m a&nbsp;</span>
+              <span className="text-violet-500 ml-2 overflow-hidden flex-shrink-0 whitespace-nowrap">
                 <Typewriter
                   options={{
                     strings: ['Full-Stack Engineer', 'Mobile App Developer'],
@@ -78,6 +81,7 @@ const About: React.FC<AboutProps | any> = ({ theme }) => {
                 />
               </span>
             </div>
+            <h3>{description}</h3>
           </div>
         </div>
       </div>
