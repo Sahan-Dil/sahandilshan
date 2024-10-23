@@ -41,7 +41,7 @@ const projects: Project[] = [
   },
 ];
 
-const Projects: React.FC<ProjectsProps> = ({ theme }) => {
+const Projects: React.FC<ProjectsProps | any> = ({ theme }) => {
   return (
     <section
       id="projects"
