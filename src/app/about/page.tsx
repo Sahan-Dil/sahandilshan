@@ -12,7 +12,7 @@ interface AboutProps {
 
 const About: React.FC<AboutProps | any> = ({ theme }) => {
   const [vantaEffect, setVantaEffect] = useState<any>(null);
-  const vantaRef = useRef<HTMLDivElement | null>(null); // Set the ref type here
+  const vantaRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (vantaEffect) vantaEffect.destroy();
@@ -43,7 +43,7 @@ const About: React.FC<AboutProps | any> = ({ theme }) => {
 
   const description =
     // eslint-disable-next-line quotes
-    "I am an optimistic and creative full-stack engineer with 2+ years of experience in most javaScript-related technologies in backend development. Also, I have experience in React and Angular with front-end development. I'm highly skilled at understanding key requirements and providing unique and creative solutions to meet customer requirements best. I'm continuously learning all the things I would like to do in the future.";
+    'I am a self-motivated pursuit of a dynamic person, skilled in full-stack development with expertise in cloud technologies, including AWS and GCP. I thrive in Agile environments, delivering robust solutions using TypeScript, React.js, Node.js, .NET and Spring Boot. Passionate about continuous learning and innovation, I bring a proactive approach to solving complex technical challenges.';
 
   return (
     <section
@@ -51,9 +51,9 @@ const About: React.FC<AboutProps | any> = ({ theme }) => {
       className="min-h-screen flex justify-center items-center relative overflow-hidden bg-transparent dark:bg-transparent"
       ref={vantaRef}
     >
-      <div className="max-w-5xl w-full mx-auto px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-12 md:gap-16">
-          <div className="w-48 h-48 sm:w-60 sm:h-60 md:w-80 md:h-80 relative order-1 md:order-2">
+      <div className="max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-16">
+          <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-80 md:h-80 relative order-1 md:order-2">
             <Image
               src={img}
               alt="Sahan Dilshan"
@@ -65,12 +65,12 @@ const About: React.FC<AboutProps | any> = ({ theme }) => {
 
           {/* Text section */}
           <div className="w-full md:w-1/2 text-center md:text-left order-2 md:order-1">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl tracking-[3px] pb-4 font-bold">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[3px] pb-4 font-bold">
               Hey there... It&apos;s Sahan Dilshan
             </h2>
-            <div className="text-2xl sm:text-3xl md:text-4xl font-bold flex items-center mb-5">
-              <span className="whitespace-nowrap">I&apos;m a&nbsp;</span>
-              <span className="text-violet-500 ml-2 overflow-hidden flex-shrink-0 whitespace-nowrap">
+            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold flex flex-col sm:flex-row items-center justify-center md:justify-start mb-5">
+              <span className="whitespace-nowrap">I&apos;m a</span>
+              <span className="text-violet-500 ml-0 sm:ml-2 overflow-hidden flex-shrink-0 whitespace-nowrap">
                 <Typewriter
                   options={{
                     strings: ['Full-Stack Engineer', 'Mobile App Developer'],
@@ -81,7 +81,9 @@ const About: React.FC<AboutProps | any> = ({ theme }) => {
                 />
               </span>
             </div>
-            <h3>{description}</h3>
+            <h3 className="text-sm sm:text-base md:text-md lg:text-md">
+              {description}
+            </h3>
           </div>
         </div>
       </div>

@@ -27,23 +27,25 @@ const NavBar: React.FC<NavBarProps> = ({ navigateToSection, theme }) => {
       >
         {/* Navbar */}
         <div className="flex space-x-8 w-full justify-around">
-          {['about', 'skills', 'projects', 'contact'].map((section) => (
-            <span
-              key={section}
-              onClick={() => handleNavigation(section)}
-              className={`cursor-pointer text-lg transition-transform duration-300  ${
-                selectedSection === section
-                  ? isDarkTheme
-                    ? 'text-[#c77dff]'
-                    : 'text-[#915abb]'
-                  : isDarkTheme
-                    ? 'text-white hover:text-[#e0aaff]'
-                    : 'text-gray-800 hover:text-[#7b2cbf]'
-              } hover:scale-105`}
-            >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
-            </span>
-          ))}
+          {['about', 'skills', 'experience', 'projects', 'contact'].map(
+            (section) => (
+              <span
+                key={section}
+                onClick={() => handleNavigation(section)}
+                className={`cursor-pointer text-lg transition-transform duration-300  ${
+                  selectedSection === section
+                    ? isDarkTheme
+                      ? 'text-[#c77dff]'
+                      : 'text-[#915abb]'
+                    : isDarkTheme
+                      ? 'text-white hover:text-[#e0aaff]'
+                      : 'text-gray-800 hover:text-[#7b2cbf]'
+                } hover:scale-105`}
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </span>
+            )
+          )}
         </div>
       </div>
     </div>

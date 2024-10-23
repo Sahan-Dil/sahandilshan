@@ -53,6 +53,10 @@ const config = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+        arabic: ['Cairo', 'sans-serif'],
+      },
       backgroundColor: {
         container: 'hsl(var(--container))',
         'gray-primary': 'hsl(var(--gray-primary))',
@@ -65,7 +69,9 @@ const config = {
         'green-chat': 'hsl(var(--green-chat))',
       },
       backgroundImage: {
+        // eslint-disable-next-line quotes
         'chat-tile-light': "url('/bg-light.png')",
+        // eslint-disable-next-line quotes
         'chat-tile-dark': "url('/bg-dark.png')",
       },
       borderRadius: {
