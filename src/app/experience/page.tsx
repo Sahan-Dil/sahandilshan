@@ -2,6 +2,7 @@
 import React from 'react';
 import { Card, CardContent, Chip, Typography, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { CardContainer, CardBody, CardItem } from '@/components/ui/3d-card';
 
 interface ExperiencePageProps {
   theme: 'dark' | 'light';
@@ -16,34 +17,19 @@ interface Experience {
   logo: string;
 }
 
-// Move styled components outside the component to prevent recreation on each render
-const StyledCard = styled(Card)<{ customtheme: 'dark' | 'light' }>(
-  ({ customtheme }) => ({
-    transition: 'all 0.3s ease-in-out',
-    backgroundColor: customtheme === 'dark' ? '#1E1E1E' : '#FFFFFF',
-    '&:hover': {
-      transform: 'translateY(-5px)',
-      boxShadow:
-        customtheme === 'dark'
-          ? '0 8px 30px rgba(255, 0, 130, 0.2)'
-          : '0 8px 30px rgba(255, 0, 130, 0.1)',
-    },
-  })
-);
-
 const StyledChip = styled(Chip)<{ customtheme: 'dark' | 'light' }>(
   ({ customtheme }) => ({
     margin: '4px',
     backgroundColor:
       customtheme === 'dark'
-        ? 'rgba(255, 0, 130, 0.15)'
-        : 'rgba(255, 0, 130, 0.1)',
-    color: customtheme === 'dark' ? '#FF69B4' : '#FF1493',
+        ? 'rgba(90, 24, 154, 0.15)'
+        : 'rgba(114, 81, 181, 0.1)',
+    color: customtheme === 'dark' ? '#7251b5' : '#5a189a',
     '&:hover': {
       backgroundColor:
         customtheme === 'dark'
-          ? 'rgba(255, 0, 130, 0.25)'
-          : 'rgba(255, 0, 130, 0.2)',
+          ? 'rgba(90, 24, 154, 0.25)'
+          : 'rgba(114, 81, 181, 0.2)',
     },
   })
 );
@@ -55,7 +41,7 @@ const TimelineLine = styled('div')(() => ({
   width: '2px',
   height: '100%',
   background:
-    'linear-gradient(to bottom, rgba(255, 0, 130, 0.3), rgba(255, 0, 130, 0.6))',
+    'linear-gradient(to bottom, rgba(90, 24, 154, 0.3), rgba(114, 81, 181, 0.6))',
   '@media (max-width: 900px)': {
     left: '20px',
   },
@@ -69,9 +55,9 @@ const TimelineDot = styled('div')<{ customtheme: 'dark' | 'light' }>(
     width: '12px',
     height: '12px',
     borderRadius: '50%',
-    backgroundColor: '#FF1493',
+    backgroundColor: '#7251b5',
     border: `2px solid ${customtheme === 'dark' ? '#1E1E1E' : '#FFFFFF'}`,
-    boxShadow: '0 0 0 4px rgba(255, 0, 130, 0.2)',
+    boxShadow: '0 0 0 4px rgba(90, 24, 154, 0.2)',
     '@media (max-width: 900px)': {
       left: '20px',
     },
@@ -140,7 +126,7 @@ const ExperiencePage: React.FC<ExperiencePageProps | any> = ({ theme }) => {
 
   return (
     <section id="experience" className="min-h-screen py-20">
-      <div className="max-w-5xl mx-auto px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <Typography
           variant="h2"
           component="h2"
@@ -169,6 +155,11 @@ const ExperiencePage: React.FC<ExperiencePageProps | any> = ({ theme }) => {
                   mb: 6,
                   mx: { xs: '20px', md: 0 },
                   position: 'relative',
+                  '@media (max-width: 900px)': {
+                    justifyContent: 'flex-start',
+                    ml: '40px',
+                    mr: '20px',
+                  },
                   '&::before': {
                     content: '""',
                     position: 'absolute',
@@ -177,86 +168,94 @@ const ExperiencePage: React.FC<ExperiencePageProps | any> = ({ theme }) => {
                     top: '50%',
                     width: { xs: '20px', md: '40px' },
                     height: '2px',
-                    backgroundColor: 'rgba(255, 0, 130, 0.4)',
+                    backgroundColor: 'rgba(90, 24, 154, 0.4)',
                     transform: 'translateY(-50%)',
                   },
                 }}
               >
                 <TimelineDot customtheme={theme} sx={{ top: '50%' }} />
 
-                <StyledCard
-                  customtheme={theme}
-                  sx={{
-                    width: { xs: '100%', md: '45%' },
-                    ml: { xs: 4, md: index % 2 === 0 ? 0 : 'auto' },
-                    mr: { xs: 0, md: index % 2 === 0 ? 'auto' : 0 },
-                  }}
-                >
-                  <CardContent>
-                    <Box display="flex" alignItems="center" gap={2} mb={2}>
-                      <Box
-                        component="img"
-                        src={exp.logo}
-                        alt={`${exp.company} logo`}
-                        sx={{
-                          width: 48,
-                          height: 48,
-                          objectFit: 'contain',
-                          borderRadius: 1,
-                        }}
-                      />
-                      <Box>
-                        <Typography
-                          variant="h6"
-                          component="h3"
-                          sx={{
-                            color: theme === 'dark' ? '#FFFFFF' : '#000000',
-                            fontWeight: 'bold',
-                          }}
-                        >
-                          {exp.title}
-                        </Typography>
-                        <Typography
-                          variant="subtitle1"
-                          sx={{
-                            color: theme === 'dark' ? '#CCCCCC' : '#666666',
-                          }}
-                        >
-                          {exp.company}
-                        </Typography>
-                        <Typography
-                          variant="caption"
-                          sx={{
-                            color: theme === 'dark' ? '#999999' : '#888888',
-                          }}
-                        >
-                          {exp.period}
-                        </Typography>
-                      </Box>
-                    </Box>
-
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: theme === 'dark' ? '#CCCCCC' : '#444444',
-                        mb: 2,
-                      }}
+                <CardContainer className="inter-var">
+                  <CardBody
+                    className={`flex flex-col h-full w-full sm:w-[460px] rounded-xl border-2 ${
+                      theme === 'dark'
+                        ? 'border-[#815ac0] bg-gray-800'
+                        : 'border-[#d2b7e5] bg-white'
+                    } p-4 sm:p-6 shadow-lg transition-all duration-300 hover:shadow-xl`}
+                  >
+                    <CardItem
+                      translateZ="50"
+                      className="w-full mb-4 text-base sm:text-xl  p-2"
                     >
-                      {exp.description}
-                    </Typography>
-
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                      {exp.skills.map((skill, skillIndex) => (
-                        <StyledChip
-                          key={skillIndex}
-                          label={skill}
-                          size="small"
-                          customtheme={theme}
+                      <Box display="flex" alignItems="center" gap={2} mb={2}>
+                        <Box
+                          component="img"
+                          src={exp.logo}
+                          alt={`${exp.company} logo`}
+                          sx={{
+                            width: { xs: 40, sm: 48 },
+                            height: { xs: 40, sm: 48 },
+                            objectFit: 'contain',
+                            borderRadius: 1,
+                          }}
                         />
-                      ))}
-                    </Box>
-                  </CardContent>
-                </StyledCard>
+                        <Box>
+                          <Typography
+                            variant="h6"
+                            component="h3"
+                            sx={{
+                              color: theme === 'dark' ? '#FFFFFF' : '#000000',
+                              fontWeight: 'bold',
+                              fontSize: { xs: '1rem', sm: '1.25rem' },
+                            }}
+                          >
+                            {exp.title}
+                          </Typography>
+                          <Typography
+                            variant="subtitle1"
+                            sx={{
+                              color: theme === 'dark' ? '#CCCCCC' : '#666666',
+                              fontSize: { xs: '0.875rem', sm: '1rem' },
+                            }}
+                          >
+                            {exp.company}
+                          </Typography>
+                          <Typography
+                            variant="caption"
+                            sx={{
+                              color: theme === 'dark' ? '#999999' : '#888888',
+                              fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                            }}
+                          >
+                            {exp.period}
+                          </Typography>
+                        </Box>
+                      </Box>
+
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          color: theme === 'dark' ? '#CCCCCC' : '#444444',
+                          mb: 2,
+                          fontSize: { xs: '0.875rem', sm: '1rem' },
+                        }}
+                      >
+                        {exp.description}
+                      </Typography>
+
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                        {exp.skills.map((skill, skillIndex) => (
+                          <span
+                            key={skillIndex}
+                            className={`px-2 py-1 text-xs rounded-full ${theme === 'dark' ? 'bg-[#7251b5] text-white' : 'bg-[#d2b7e5] text-black'}`}
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </Box>
+                    </CardItem>
+                  </CardBody>
+                </CardContainer>
               </Box>
             ))}
           </Box>
