@@ -55,8 +55,10 @@ const Projects: React.FC<ProjectsProps | any> = ({ theme }) => {
           {projects.map((project, index) => (
             <CardContainer key={index} className="inter-var">
               <CardBody
-                className={`flex flex-col h-full sm:h-[600px] sm:w-[380px]  w-full rounded-xl ${
-                  theme === 'dark' ? 'bg-gray-800' : 'bg-white'
+                className={`flex flex-col h-full sm:h-[600px] sm:w-[380px]  w-full rounded-xl border-2 ${
+                  theme === 'dark'
+                    ? 'border-[#815ac0] bg-gray-800'
+                    : 'border-[#d2b7e5] bg-white'
                 } p-4 sm:p-6 shadow-lg transition-all duration-300 hover:shadow-xl`}
               >
                 <CardItem
@@ -89,7 +91,7 @@ const Projects: React.FC<ProjectsProps | any> = ({ theme }) => {
                     {project.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-2 sm:px-3 py-1 text-xs rounded-full bg-gray-200 text-black"
+                        className={`px-2 py-1 text-xs rounded-full ${theme === 'dark' ? 'bg-[#7251b5] text-white' : 'bg-[#d2b7e5] text-black'}`}
                       >
                         {tech}
                       </span>
