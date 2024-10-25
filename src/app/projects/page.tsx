@@ -45,44 +45,46 @@ const Projects: React.FC<ProjectsProps | any> = ({ theme }) => {
   return (
     <section
       id="projects"
-      className={`py-12 sm:py-20 ${theme === 'dark' ? 'text-white' : 'text-black'}`}
+      className={`py-8 sm:py-12 md:py-16 lg:py-20 ${
+        theme === 'dark' ? 'text-white' : 'text-black'
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 text-center">
+      <div className="max-w-full md:max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 mt-10">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 sm:mb-8 md:mb-12 text-center">
           Projects
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 place-items-center">
           {projects.map((project, index) => (
-            <CardContainer key={index} className="inter-var">
+            <CardContainer
+              key={index}
+              className="inter-var w-[80vw] sm:w-[400px] md:w-[350px] lg:w-[380px]"
+            >
               <CardBody
-                className={`flex flex-col h-full sm:h-[600px] sm:w-[380px]  w-full rounded-xl border-2 ${
+                className={`flex flex-col  min-h-[400px] h-auto sm:h-[450px] md:h-[480px] w-full rounded-xl border-2 ${
                   theme === 'dark'
                     ? 'border-[#815ac0] bg-gray-800'
                     : 'border-[#d2b7e5] bg-white'
-                } p-4 sm:p-6 shadow-lg transition-all duration-300 hover:shadow-xl`}
+                } p-3 sm:p-4 md:p-6 shadow-lg transition-all duration-300 hover:shadow-xl`}
               >
-                <CardItem
-                  translateZ="50"
-                  className="w-full mb-4 text-xl font-bold p-2"
-                >
+                <CardItem translateZ="50" className="w-full mb-3 sm:mb-4">
                   <Image
                     src={project.src}
                     alt={project.title}
                     width={300}
                     height={300}
-                    className="w-full h-40 sm:h-48 object-cover rounded-lg"
+                    className="w-full h-48 sm:h-52 object-cover rounded-lg"
                   />
                 </CardItem>
                 <CardItem
                   translateZ="60"
-                  className="text-xl sm:text-2xl font-bold p-2"
+                  className="text-xl sm:text-2xl font-bold p-1 sm:p-2"
                 >
                   {project.title}
                 </CardItem>
                 <CardItem
                   as="p"
                   translateZ="50"
-                  className="text-sm mb-4 flex-grow p-2"
+                  className="text-sm sm:text-base mb-3 sm:mb-4 flex-grow p-1 sm:p-2"
                 >
                   {project.description}
                 </CardItem>
@@ -91,7 +93,11 @@ const Projects: React.FC<ProjectsProps | any> = ({ theme }) => {
                     {project.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className={`px-2 py-1 text-xs rounded-full ${theme === 'dark' ? 'bg-[#7251b5] text-white' : 'bg-[#d2b7e5] text-black'}`}
+                        className={`px-3 py-1 text-sm rounded-full ${
+                          theme === 'dark'
+                            ? 'bg-[#7251b5] text-white'
+                            : 'bg-[#d2b7e5] text-black'
+                        }`}
                       >
                         {tech}
                       </span>
@@ -104,14 +110,14 @@ const Projects: React.FC<ProjectsProps | any> = ({ theme }) => {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 inline-block px-3 sm:px-4 py-2 bg-[#5a189a] text-white rounded text-sm sm:text-base transition duration-300"
+                      className="p-2 px-4 py-2 bg-[#5a189a] text-white rounded text-sm transition duration-300"
                     >
                       View Project
                     </CardItem>
                     <CardItem
                       translateZ={20}
                       as="button"
-                      className="p-2 px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base font-medium bg-gray-700 text-white hover:bg-gray-600 transition-colors duration-300"
+                      className="p-2 px-4 py-2 rounded-lg text-sm font-medium bg-gray-700 text-white hover:bg-gray-600 transition-colors duration-300"
                     >
                       More Info
                     </CardItem>

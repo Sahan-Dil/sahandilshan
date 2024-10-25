@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { User, Code, Briefcase, FolderGit2, Mail } from 'lucide-react';
 
 interface NavBarProps {
   navigateToSection: (section: string) => void;
@@ -10,6 +11,14 @@ interface NavBarProps {
 const NavBar: React.FC<NavBarProps> = ({ navigateToSection, theme }) => {
   const [selectedSection, setSelectedSection] = useState<string>('about');
   const isDarkTheme = theme === 'dark';
+
+  const navItems = [
+    { name: 'about', icon: User },
+    { name: 'skills', icon: Code },
+    { name: 'experience', icon: Briefcase },
+    { name: 'projects', icon: FolderGit2 },
+    { name: 'contact', icon: Mail },
+  ];
 
   const handleNavigation = (section: string) => {
     setSelectedSection(section);
@@ -25,27 +34,28 @@ const NavBar: React.FC<NavBarProps> = ({ navigateToSection, theme }) => {
             : 'border-gray-300 hover:shadow-black/50'
         } hover:shadow-lg hover:shadow-white/50`}
       >
-        {/* Navbar */}
-        <div className="flex space-x-8 w-full justify-around">
-          {['about', 'skills', 'experience', 'projects', 'contact'].map(
-            (section) => (
-              <span
-                key={section}
-                onClick={() => handleNavigation(section)}
-                className={`cursor-pointer text-lg transition-transform duration-300  ${
-                  selectedSection === section
-                    ? isDarkTheme
-                      ? 'text-[#c77dff]'
-                      : 'text-[#915abb]'
-                    : isDarkTheme
-                      ? 'text-white hover:text-[#e0aaff]'
-                      : 'text-gray-800 hover:text-[#7b2cbf]'
-                } hover:scale-105`}
-              >
-                {section.charAt(0).toUpperCase() + section.slice(1)}
+        <div className="flex space-x-4 md:space-x-8 w-full justify-around">
+          {navItems.map(({ name, icon: Icon }) => (
+            <span
+              key={name}
+              onClick={() => handleNavigation(name)}
+              className={`cursor-pointer transition-transform duration-300 ${
+                selectedSection === name
+                  ? isDarkTheme
+                    ? 'text-[#c77dff]'
+                    : 'text-[#915abb]'
+                  : isDarkTheme
+                    ? 'text-white hover:text-[#e0aaff]'
+                    : 'text-gray-800 hover:text-[#7b2cbf]'
+              } hover:scale-105`}
+            >
+              {/* Show icon on small screens, text on medium and larger screens */}
+              <span className="hidden md:inline text-lg">
+                {name.charAt(0).toUpperCase() + name.slice(1)}
               </span>
-            )
-          )}
+              <Icon className="inline md:hidden" size={20} />
+            </span>
+          ))}
         </div>
       </div>
     </div>
