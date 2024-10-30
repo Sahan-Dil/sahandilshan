@@ -3,14 +3,17 @@ import React from 'react';
 import Image from 'next/image';
 import { CardBody, CardContainer, CardItem } from '@/components/ui/3d-card';
 import Link from 'next/link';
-import img from '../../components/ui/OIP.jpg';
+import thejobs from '../../components/ui/thejobs.png';
+import skincarehub from '../../components/ui/skincarehub.png';
+import skhubbackend from '../../components/ui/skhubbackend.png';
 
 interface Project {
   title: string;
   description: string;
   src: any;
   technologies: string[];
-  link: string;
+  link?: string;
+  codeLink?: string;
 }
 
 interface ProjectsProps {
@@ -19,27 +22,77 @@ interface ProjectsProps {
 
 const projects: Project[] = [
   {
-    title: 'Project 1',
-    description: 'A brief description of project 1.',
-    src: img,
-    technologies: ['React', 'Node.js', 'MongoDB'],
-    link: 'https://project1.com',
+    title: 'SkinCare-Hub - frontend',
+    description:
+      'Skin Care Hub is an application using ML for analyse and identify skin annomalies, and provide better solutions for that.',
+    src: skincarehub,
+    technologies: [
+      'Next js',
+      'React',
+      'MUI',
+      'Type script',
+      'Tailwind',
+      'axios',
+    ],
+    link: 'https://skin-care-hub.vercel.app/',
+    codeLink: 'https://github.com/Sahan-Dil/SkinCare-Hub',
   },
   {
-    title: 'Project 2',
-    description: 'A brief description of project 2.',
-    src: img,
-    technologies: ['Vue.js', 'Express', 'PostgreSQL'],
-    link: 'https://project2.com',
+    title: 'The jobs - frontend',
+    description:
+      'web application for job seeking and get councellation about jobs in various fields in abroad.',
+    src: thejobs,
+    technologies: ['React', 'MUI', 'javascript', 'axios'],
+    link: 'https://the-jobs-five.vercel.app/',
+    codeLink: 'https://github.com/Sahan-Dil/TheJobs_frontend',
   },
   {
-    title: 'Project 3',
-    description: 'A brief description of project 3.',
-    src: img,
-    technologies: ['Angular', 'Django', 'MySQL'],
-    link: 'https://project3.com',
+    title: 'SkinCare-Hub - backend',
+    description:
+      'Backend for Skin Care Hub and trained model: https://github.com/Sahan-Dil/skinCare-Hub-model that deployed on GCP',
+    src: skhubbackend,
+    technologies: [
+      'Node.js',
+      'Express.js',
+      'GCP',
+      'MongoDB',
+      'python',
+      'typeScript',
+      'flask',
+      'tensorflow',
+    ],
+    codeLink: 'https://github.com/Sahan-Dil/skinCare-hub-backend',
   },
 ];
+
+const MAX_DESCRIPTION_LENGTH = 120;
+
+const truncateText = (text: string) => {
+  if (text.length > MAX_DESCRIPTION_LENGTH) return text;
+
+  const linkRegex = /(https?:\/\/\S+)/g;
+  const parts = text.split(linkRegex);
+
+  return parts.map((part, index) => {
+    if (linkRegex.test(part)) {
+      return (
+        <a
+          key={index}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 hover:underline"
+        >
+          {part.length > 20 ? part.slice(0, 20).trim() + '...' : part}
+        </a>
+      );
+    } else {
+      return part.length > MAX_DESCRIPTION_LENGTH
+        ? part.slice(0, MAX_DESCRIPTION_LENGTH).trim() + '...'
+        : part;
+    }
+  });
+};
 
 const Projects: React.FC<ProjectsProps | any> = ({ theme }) => {
   return (
@@ -60,7 +113,7 @@ const Projects: React.FC<ProjectsProps | any> = ({ theme }) => {
               className="inter-var w-[80vw] sm:w-[400px] md:w-[350px] lg:w-[380px]"
             >
               <CardBody
-                className={`flex flex-col  min-h-[400px] h-auto sm:h-[450px] md:h-[480px] w-full rounded-xl border-2 ${
+                className={`flex flex-col  min-h-[460px]  sm:min-h-[520px] md:min-h-[580px] lg:min-h-[540px] w-full rounded-xl border-2 ${
                   theme === 'dark'
                     ? 'border-[#815ac0] bg-gray-800'
                     : 'border-[#d2b7e5] bg-white'
@@ -84,16 +137,16 @@ const Projects: React.FC<ProjectsProps | any> = ({ theme }) => {
                 <CardItem
                   as="p"
                   translateZ="50"
-                  className="text-sm sm:text-base mb-3 sm:mb-4 flex-grow p-1 sm:p-2"
+                  className="text-xs sm:text-sm mb-3 sm:mb-4 flex-grow p-1 sm:p-2"
                 >
-                  {project.description}
+                  {truncateText(project.description)}
                 </CardItem>
                 <div className="mt-auto">
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className={`px-3 py-1 text-sm rounded-full ${
+                        className={`px-3 py-1 text-xs rounded-full ${
                           theme === 'dark'
                             ? 'bg-[#7251b5] text-white'
                             : 'bg-[#d2b7e5] text-black'
@@ -104,23 +157,33 @@ const Projects: React.FC<ProjectsProps | any> = ({ theme }) => {
                     ))}
                   </div>
                   <div className="flex justify-between items-center">
-                    <CardItem
-                      translateZ={20}
-                      as={Link}
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 px-4 py-2 bg-[#5a189a] text-white rounded text-sm transition duration-300"
-                    >
-                      View Project
-                    </CardItem>
-                    <CardItem
-                      translateZ={20}
-                      as="button"
-                      className="p-2 px-4 py-2 rounded-lg text-sm font-medium bg-gray-700 text-white hover:bg-gray-600 transition-colors duration-300"
-                    >
-                      More Info
-                    </CardItem>
+                    {project.link ? (
+                      <CardItem
+                        translateZ={100}
+                        as={Link}
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 px-4 py-2 bg-[#5a189a] text-white  hover:bg-[#7251b5] rounded text-sm transition duration-300"
+                      >
+                        View Live Demo
+                      </CardItem>
+                    ) : (
+                      <div></div>
+                    )}
+
+                    {project.codeLink && (
+                      <CardItem
+                        translateZ={100}
+                        as={Link}
+                        href={project.codeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 px-4 py-2 rounded-lg text-sm font-medium bg-gray-700 text-white hover:bg-gray-600 transition-colors duration-300"
+                      >
+                        View Code
+                      </CardItem>
+                    )}
                   </div>
                 </div>
               </CardBody>
