@@ -26,7 +26,7 @@ const NavBar: React.FC<NavBarProps> = ({ navigateToSection, theme }) => {
   };
 
   return (
-    <div className="fixed top-5 left-0 right-0 z-50 mx-auto max-w-5xl px-6 lg:px-8">
+    <div className="fixed top-5 left-0 right-0 z-50 mx-auto max-w-5xl px-10 md:px-20">
       <div
         className={`flex justify-around items-center p-2 bg-white dark:bg-gray-900 bg-opacity-50 dark:bg-opacity-50 backdrop-blur-lg rounded-full shadow-md border transition duration-300 ${
           isDarkTheme

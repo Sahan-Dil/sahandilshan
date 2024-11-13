@@ -5,6 +5,11 @@ import * as THREE from 'three';
 import FOG from 'vanta/dist/vanta.fog.min';
 import Image from 'next/image';
 import img from '../../components/ui/OIP.jpg';
+import {
+  Button,
+  CircularProgress,
+  circularProgressClasses,
+} from '@mui/material';
 
 interface AboutProps {
   theme: 'dark' | 'light';
@@ -12,6 +17,8 @@ interface AboutProps {
 
 const About: React.FC<AboutProps | any> = ({ theme }) => {
   const [vantaEffect, setVantaEffect] = useState<any>(null);
+  const [downloading, setDownloading] = useState(false);
+
   const vantaRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -44,6 +51,25 @@ const About: React.FC<AboutProps | any> = ({ theme }) => {
   const description =
     // eslint-disable-next-line quotes
     'I am a self-motivated pursuit of a dynamic person, skilled in full-stack development with expertise in cloud technologies, including AWS and GCP. I thrive in Agile environments, delivering robust solutions using TypeScript, React.js, Node.js, .NET and Spring Boot. Passionate about continuous learning and innovation, I bring a proactive approach to solving complex technical challenges.';
+  const downloadFromGdrive = async (
+    setDownloading: React.Dispatch<React.SetStateAction<boolean>>
+  ) => {
+    setDownloading(true);
+
+    // Construct the direct download URL
+    const downloadUrl =
+      'https://drive.google.com/uc?export=download&id=1KFSOua12DhbQ0vfyn3X5igOEgcQR7deQ';
+
+    // Create a hidden anchor element to trigger the download
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.click();
+
+    // Reset downloading state after a delay (adjust as necessary)
+    setTimeout(() => {
+      setDownloading(false);
+    }, 3000); // Simulate download time (adjust if needed)
+  };
 
   return (
     <section
@@ -84,6 +110,38 @@ const About: React.FC<AboutProps | any> = ({ theme }) => {
             <h3 className="text-sm sm:text-base md:text-md lg:text-md">
               {description}
             </h3>
+
+            <Button
+              onClick={() => downloadFromGdrive(setDownloading)}
+              className="mt-6 px-6 py-3 bg-gradient-to-r from-[#822faf] to-indigo-500 text-white rounded-md hover:from-violet-600 hover:to-indigo-800 transition-colors duration-300"
+              disabled={downloading}
+              startIcon={
+                downloading && (
+                  <React.Fragment>
+                    <svg width={0} height={0}>
+                      <defs>
+                        <linearGradient
+                          id="my_gradient"
+                          x1="0%"
+                          y1="0%"
+                          x2="0%"
+                          y2="100%"
+                        >
+                          <stop offset="0%" stopColor="#e01cd5" />
+                          <stop offset="100%" stopColor="#1CB5E0" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    <CircularProgress
+                      size={20}
+                      sx={{ 'svg circle': { stroke: 'url(#my_gradient)' } }}
+                    />
+                  </React.Fragment>
+                )
+              }
+            >
+              {downloading ? 'Downloading...' : 'Check Resume'}
+            </Button>
           </div>
         </div>
       </div>

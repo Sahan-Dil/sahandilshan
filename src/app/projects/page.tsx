@@ -6,6 +6,10 @@ import Link from 'next/link';
 import thejobs from '../../components/ui/thejobs.png';
 import skincarehub from '../../components/ui/skincarehub.png';
 import skhubbackend from '../../components/ui/skhubbackend.png';
+import nerdAi from '../../components/ui/nerd-ai.png';
+import obesity from '../../components/ui/obesity.png';
+import hello from '../../components/ui/hello.png';
+import smartlearn from '../../components/ui/smartlearn.png';
 
 interface Project {
   title: string;
@@ -49,7 +53,7 @@ const projects: Project[] = [
   {
     title: 'SkinCare-Hub - backend',
     description:
-      'Backend for Skin Care Hub and trained model: https://github.com/Sahan-Dil/skinCare-Hub-model that deployed on GCP',
+      'Backend for Skin Care Hub and trained model: https://github.com/Sahan-Dil/skinCare-Hub-model that deployed on GCP.',
     src: skhubbackend,
     technologies: [
       'Node.js',
@@ -63,18 +67,55 @@ const projects: Project[] = [
     ],
     codeLink: 'https://github.com/Sahan-Dil/skinCare-hub-backend',
   },
+  {
+    title: 'Nerd-Ai: Voice-Assisted Music Player',
+    description:
+      'Nerd-Ai is an AI-driven music player app built with Java in Android Studio, integrating Alan AI to enable hands-free, voice-controlled playback. Using Alan AIs advanced natural language processing, users can navigate their music library, play specific songs, skip tracks, pause, or stop playback—all with voice commands. The app features real-time voice feedback, displaying user commands on-screen as they’re recognized, ensuring a responsive and interactive experience. Nerd-Ai combines the power of Alan AI with Android robust Java framework to create an intelligent, voice-assisted music experience on mobile.',
+    src: nerdAi,
+    technologies: ['Java', 'Alan AI', 'XML', 'Gradle'],
+    codeLink: 'https://github.com/Sahan-Dil/NerdAI',
+  },
+  {
+    title: 'Obesity Risk Prediction App',
+    description:
+      'This web application predicts the risk of obesity based on input features such as age, gender, height, weight, and lifestyle factors. The prediction model is trained using machine learning algorithms and is accessible through a user-friendly interface.',
+    src: obesity,
+    technologies: ['Python', 'Streamlit', 'Scikit-learn', 'Pandas', 'NumPy'],
+    link: 'https://obesity-risk-prediction.streamlit.app/',
+    codeLink: 'https://github.com/Sahan-Dil/obesity-risk-prediction',
+  },
+  {
+    title: 'Hello - social media web App',
+    description:
+      'Complete social media web application powered by react with chat, voice over search, gaming and like-comment and posting.',
+    src: hello,
+    technologies: ['React js', 'Express js', 'Firebase', 'MUI', 'socket.io'],
+    codeLink: 'https://github.com/Sahan-Dil/Hello',
+  },
+  {
+    title: 'Smart Learn - e learning mobile app',
+    description:
+      'A Complete Android E-learning Platform, including video conference, chat, live class, sharing matrials, Quizes and more.',
+    src: smartlearn,
+    technologies: ['java', 'Firebase', 'Jitsi'],
+    codeLink: 'https://github.com/Sahan-Dil/SmartLearn',
+  },
 ];
 
-const MAX_DESCRIPTION_LENGTH = 120;
+const MAX_DESCRIPTION_LENGTH = 100;
 
 const truncateText = (text: string) => {
-  if (text.length > MAX_DESCRIPTION_LENGTH) return text;
-
   const linkRegex = /(https?:\/\/\S+)/g;
-  const parts = text.split(linkRegex);
+  const parts = text.split(linkRegex) || [text];
 
-  return parts.map((part, index) => {
+  let usedLength = 0;
+
+  const truncatedParts = parts.map((part, index) => {
     if (linkRegex.test(part)) {
+      // Calculate the used length for the link
+      usedLength += part.length;
+      const truncatedLink =
+        part.length > 20 ? part.slice(0, 20).trim() + '...' : part;
       return (
         <a
           key={index}
@@ -83,15 +124,30 @@ const truncateText = (text: string) => {
           rel="noopener noreferrer"
           className="text-blue-500 hover:underline"
         >
-          {part.length > 20 ? part.slice(0, 20).trim() + '...' : part}
+          {truncatedLink}
         </a>
       );
     } else {
-      return part.length > MAX_DESCRIPTION_LENGTH
-        ? part.slice(0, MAX_DESCRIPTION_LENGTH).trim() + '...'
-        : part;
+      // For regular text, check remaining space after considering links
+      const remainingLength = MAX_DESCRIPTION_LENGTH - usedLength;
+      if (remainingLength > 0) {
+        // If there's space remaining, show the part of the text within the limit
+        usedLength += part.length;
+        return (
+          <span key={index}>
+            {part.length <= remainingLength
+              ? part
+              : part.slice(0, remainingLength).trim() + '...'}
+          </span>
+        );
+      } else {
+        // If no space is left, show "..."
+        return <span key={index}>...</span>;
+      }
     }
   });
+
+  return truncatedParts;
 };
 
 const Projects: React.FC<ProjectsProps | any> = ({ theme }) => {
