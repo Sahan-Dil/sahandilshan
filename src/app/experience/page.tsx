@@ -71,7 +71,7 @@ const ExperiencePage: React.FC<ExperiencePageProps | any> = ({ theme }) => {
       company: 'EvokeLabs (Pvt) Ltd',
       period: 'June 2023 - current',
       description:
-        'Working on Web application using Angular, NestJS, and MongoDB',
+        'Working with TypeScript, Node.js, React, and AWS services, focusing on scalable, cloud-based solutions. Skilled in solution architecture, data streaming, and DevOps, I leverage tools like Docker, Kafka, Neo4j, and Redux to deliver responsive, high-performance systems.',
       skills: [
         'React js',
         'Nextjs',
@@ -83,6 +83,12 @@ const ExperiencePage: React.FC<ExperiencePageProps | any> = ({ theme }) => {
         'TypeScript',
         'Git',
         'Jira',
+        'Kafka',
+        'Neo4j',
+        'Redis',
+        'Docker',
+        'AWS',
+        'Redux',
       ],
       logo: '/evokelabs-logo.png',
     },
