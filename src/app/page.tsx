@@ -13,7 +13,7 @@ import ExperiencePage from './experience/page';
 
 const Home = () => {
   const { setTheme } = useTheme();
-  const [currentTheme, setCurrentTheme] = useState<'light' | 'dark'>('light');
+  const [currentTheme, setCurrentTheme] = useState<'light' | 'dark'>('dark');
   const router = useRouter();
 
   useEffect(() => {
@@ -29,8 +29,8 @@ const Home = () => {
   useEffect(() => {
     const handleThemeLoad = () => {
       const localTheme = window.localStorage.getItem('theme');
-      setCurrentTheme(localTheme === 'dark' ? 'dark' : 'light');
-      setTheme(localTheme === 'dark' ? 'dark' : 'light'); // Ensure that the theme is also set
+      setCurrentTheme(localTheme === 'light' ? 'light' : 'dark');
+      setTheme(localTheme === 'light' ? 'light' : 'dark');
     };
 
     handleThemeLoad();
