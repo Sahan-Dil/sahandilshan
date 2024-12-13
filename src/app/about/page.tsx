@@ -58,7 +58,7 @@ const About: React.FC<AboutProps | any> = ({ theme }) => {
 
     // Construct the direct download URL
     const downloadUrl =
-      'https://drive.google.com/uc?export=download&id=1KFSOua12DhbQ0vfyn3X5igOEgcQR7deQ';
+      'https://drive.google.com/uc?export=download&id=1S9Nl2hY8ujvU7EZ3Pn8foL7RLORIjBty';
 
     // Create a hidden anchor element to trigger the download
     const link = document.createElement('a');
