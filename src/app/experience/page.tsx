@@ -67,9 +67,35 @@ const TimelineDot = styled('div')<{ customtheme: 'dark' | 'light' }>(
 const ExperiencePage: React.FC<ExperiencePageProps | any> = ({ theme }) => {
   const experiences: Experience[] = [
     {
+      title: 'Software Engineer',
+      company: 'EvokeLabs (Pvt) Ltd',
+      period: 'April 2025 - current',
+      description:
+        'Acting as a Team Lead in a fast-paced startup, leading full-stack development with TypeScript, React, Node.js, and Spring Boot. Focused on cloud-native architectures using AWS services, while driving Agile delivery and mentoring junior developers.',
+      skills: [
+        'React js',
+        'Nextjs',
+        'Node js',
+        'Express js',
+        'Spring Boot',
+        'Typescript',
+        'Tailwindcss',
+        'MongoDB',
+        'PostgreSQL',
+        'Git',
+        'Neo4j',
+        'Redis',
+        'Docker',
+        'AWS',
+        'Redux',
+        'CI/CD',
+      ],
+      logo: '/evokelabs-logo.png',
+    },
+    {
       title: 'Associate Software Engineer',
       company: 'EvokeLabs (Pvt) Ltd',
-      period: 'June 2023 - current',
+      period: 'June 2023 - March 2025',
       description:
         'Working with TypeScript, Node.js, React, and AWS services, focusing on scalable, cloud-based solutions. Skilled in solution architecture, data streaming, and DevOps, I leverage tools like Docker, Kafka, Neo4j, and Redux to deliver responsive, high-performance systems.',
       skills: [
@@ -196,7 +222,7 @@ const ExperiencePage: React.FC<ExperiencePageProps | any> = ({ theme }) => {
                       <Box display="flex" alignItems="center" gap={2} mb={2}>
                         <Box
                           component="img"
-                          src={exp.logo}
+                          // src={exp.logo || defaulticon}
                           alt={`${exp.company} logo`}
                           sx={{
                             width: { xs: 40, sm: 48 },

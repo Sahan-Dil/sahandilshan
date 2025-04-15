@@ -165,10 +165,10 @@ const SkillsPage: React.FC<SkillsPageProps | any> = ({ theme }) => {
               src={skill.iconUrl}
               alt={skill.name}
               className="w-10 h-10 mb-2"
-              onError={(e) => {
-                e.currentTarget.src =
-                  'https://via.placeholder.com/40?text=' + skill.name[0];
-              }}
+              // onError={(e) => {
+              //   e.currentTarget.src =
+              //     'https://via.placeholder.com/40?text=' + skill.name[0];
+              // }}
             />
             <span
               className={`px-2 py-1 text-xs rounded-full ${theme === 'dark' ? 'bg-[#7251b5] text-white' : 'bg-[#d2b7e5] text-black'}`}

@@ -5,11 +5,7 @@ import * as THREE from 'three';
 import FOG from 'vanta/dist/vanta.fog.min';
 import Image from 'next/image';
 import img from '../../components/ui/OIP.jpg';
-import {
-  Button,
-  CircularProgress,
-  circularProgressClasses,
-} from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 
 interface AboutProps {
   theme: 'dark' | 'light';
